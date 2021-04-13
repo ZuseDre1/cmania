@@ -38,22 +38,21 @@ export function activate(context: vscode.ExtensionContext) {
 			if (!activeEditor) {
 				return;
 			}
-			const regEx = /\d+/g;
+			const regEx = /%LOL\n[\s\S]*%LOLOUT/g;
 			const text = activeEditor.document.getText();
-			const smallNumbers: vscode.DecorationOptions[] = [];
-			const largeNumbers: vscode.DecorationOptions[] = [];
+			const colorText: vscode.DecorationOptions[] = [];
 			let match;
 			while ((match = regEx.exec(text))) {
 				const startPos = activeEditor.document.positionAt(match.index);
 				const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 				const decoration = { range: new vscode.Range(startPos, endPos), hoverMessage: 'Number **' + match[0] + '**' };
 				if (match[0].length < 3) {
-					smallNumbers.push(decoration);
+				//	smallNumbers.push(decoration);
 				} else {
-					largeNumbers.push(decoration);
+				//	largeNumbers.push(decoration);
 				}
 			}
-			activeEditor.setDecorations(smallNumberDecorationType, smallNumbers);
+			//activeEditor.setDecorations(smallNumberDecorationType, smallNumbers);
 		}
 		//////////////////////////////////////////////////////////////////////////////////
 
